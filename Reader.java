@@ -3,13 +3,17 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 
+/**
+ * A program made to significantly increase read words per minute, by displaying words of a text one after another in place.
+ * extremely useful for quickly reading on a time crunch
+ * @author Cousin_Nic
+ */
 class Reader extends JFrame implements ActionListener {
 
-	// public global variables, casue whos gonna hack a text reader?
+	// public global variables, cause whose gonna hack a text reader?
 	JFrame frame;
 	JTextArea textArea;
 	static JLabel output;
@@ -20,6 +24,9 @@ class Reader extends JFrame implements ActionListener {
 	static int currentWordCount;
 	public static int speed = 0;
 
+	/**
+	 * method to build the display frame components.
+	 */
 	public Reader() {
 		
 		Border border = BorderFactory.createLineBorder(Color.DARK_GRAY);
@@ -127,16 +134,22 @@ class Reader extends JFrame implements ActionListener {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * main, builds frame, then runs "run" method
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Reader frame = new Reader();
 		run();
 	}
 
+	/**
+	 * runs the program
+	 */
 	public static void run() {
 
 		// run loop forever
 		while (true) {
-			//System.out.println(speed);
 			// only work if un-paused
 			if (!pause) {
 				currentWordCount++;
@@ -165,6 +178,9 @@ class Reader extends JFrame implements ActionListener {
 
 	}
 	
+	/**
+	 * handles the displayed percentage of words read.
+	 */
 	public static void calculateAndPrintOut() {
 		String word = splitText[currentWordCount];
 		output.setText(word);
@@ -180,7 +196,10 @@ class Reader extends JFrame implements ActionListener {
 		
 
 	}
-
+	/**
+	 * sleep for given duration, for convenience sake, along with my sanity
+	 * @param duration
+	 */
 	public static void sleep(int duration) {
 		try {
 			Thread.sleep(duration);
@@ -188,6 +207,9 @@ class Reader extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * handles display frame actions such as buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//begin printing entered text
